@@ -22,7 +22,10 @@ const Login = () => {
     }
 
     const handleSignOut = () => {
-        signOut(auth).then(() => { console.log("Sign Out done"); }).catch((error) => { console.log(error); })
+        signOut(auth).then(() => {
+            console.log("Sign Out done");
+            setUser(null);
+        }).catch((error) => { console.log(error); })
     }
 
 
