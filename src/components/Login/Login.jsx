@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase.init";
 import { useState } from "react";
 
@@ -20,6 +20,12 @@ const Login = () => {
                 console.log(error);
             })
     }
+
+    const handleSignOut = () => {
+        signOut(auth).then(() => { console.log("Sign Out done"); }).catch((error) => { console.log(error); })
+    }
+
+
     return (
         <div>
             <h2>Please log in</h2>
@@ -29,8 +35,11 @@ const Login = () => {
                 user && <div>
                     <h3>{user.displayName}</h3>
                     <h3>{user.email}</h3>
+                    <img src={user.photoURL} alt="" />
                 </div>
             }
+
+            <button onClick={handleSignOut}>Sign Out</button>
         </div>
     );
 };
