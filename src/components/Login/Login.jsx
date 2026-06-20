@@ -26,8 +26,11 @@ const Login = () => {
         console.log("github sign in");
         signInWithPopup(auth, githubProvider)
             .then((result) => {
-                console.log(result.user);
-                setUser(result.user);
+
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+                setUser(loggedInUser);
+
             }).catch((error) => {
                 console.log(error);
             })
@@ -56,7 +59,7 @@ const Login = () => {
             {
                 user && <div>
                     <h3>{user.displayName}</h3>
-                    <h3>{user.email}</h3>
+                    <h3>{user?.email || user.email || "Not available"}</h3>
                     <img src={user.photoURL} alt="" />
                 </div>
             }
