@@ -21,6 +21,10 @@ const Login = () => {
             })
     }
 
+    const handleGithubSignIn = () => {
+        console.log("github sign in");
+    }
+
     const handleSignOut = () => {
         signOut(auth).then(() => {
             console.log("Sign Out done");
@@ -32,7 +36,14 @@ const Login = () => {
     return (
         <div>
             <h2>Please log in</h2>
-            <button onClick={handleGoogleSignIn}>Sign in with google</button>
+
+
+            {
+                user ? <button onClick={handleSignOut}>Sign Out</button> : <>
+                    <button onClick={handleGoogleSignIn}>Sign in with google</button>
+                    <button onClick={handleGithubSignIn}>Sign in with Github</button>
+                </>
+            }
 
             {
                 user && <div>
@@ -42,7 +53,7 @@ const Login = () => {
                 </div>
             }
 
-            <button onClick={handleSignOut}>Sign Out</button>
+
         </div>
     );
 };
